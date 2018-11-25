@@ -1,0 +1,49 @@
+Materiais e Metodologia:
+
+* Explicar a Placa
+
+//Seção
+
+  Para o desenvolvimento e teste de todas as etapas do projeto foi utilizada a placa
+UP Educational Board, que está representada detalhadamente pela imagem 1.
+
+//Imagem 1
+
+  Dentre os diversos elementos da
+
+* Explicar necessidade do Antibouncing
+
+//Seção
+
+  Quando trabalhamos com um circuito que envolve entradas mecânicas (como a ponta de prova),
+tem-se o surgimento de um efeito conhecido como “bouncing”.
+  Esse efeito é caracterizado por “idas” e “vindas”, do nível lógico alto e o nível
+lógico baixo, antes de efetivamente estabilizar. Essas oscilações rápidas podem
+gerar acionamentos indevidos no nosso circuito. Pois o mesmo tende a interpretar
+que a ponta de prova foi acionada repetidas vezes em um curto espaço de tempo,
+quando na verdade foi apenas uma vez.
+  Devido a isso, foi necessário o desenvolvimento de um módulo de Antibouncing
+integrado ao sistema para lidar com o problema. Usando técnicas de desenvolvimento
+de máquinas sequenciais conseguimos que o sinal de entrada similar ao da imagem A
+fosse manipulado, gerando uma saída como o apresentado na imagem B.
+
+//Imagem A
+//Imagem B
+
+
+* Explicar necessidade do Timeout
+
+//Seção
+
+  Após ser implementado o módulo de AntiBouncing, o grupo se deparou com uma nova
+situação problemática, foi identificado que o sinal capturado pela ponta de prova
+(podendo ser R, S ou T), como já era esperado, começava a se defasar com o passar
+dos segundos, no entanto, depois de um período específico essa defasagem tornava-se
+tão severa que o sinal já não podia mais ser identificado como R,S ou T.
+  Esse período foi chamado de período de Timeout do sinal obtido pela ponta de prova
+e foi necessário o desenvolvimento de um módulo adicional integrado ao sistema que
+fosse capaz de cronometrar esse período e que identificasse quando um sinal contido
+na entrada da ponta de prova seria confiável ou não.
+  Se identificado o sinal não-confiável seria necessário a obtenção de um novo sinal
+por meio do acionamento da ponta de prova, tendo novamente um sinal aceitável para
+ser manipulado novamente pelos outros módulos do circuito.
