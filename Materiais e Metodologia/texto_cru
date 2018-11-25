@@ -17,4 +17,18 @@ requisitaram um estudo prévio e tornaram-se de domínio do aluno.
 
 
 * Explicar necessidade do Antibouncing
+
+  Quando trabalhamos com um circuito que envolve entradas mecânicas (como a ponta de prova),
+tem-se o surgimento de um efeito conhecido como “bouncing”.
+  Esse efeito é caracterizado por “idas” e “vindas”, do nível lógico alto e o nível
+lógico baixo, antes de efetivamente estabilizar. Entre outras palavras, essas
+oscilações rápidas podem gerar acionamentos indevidos no nosso circuito. Pois
+o mesmo tende a interpretar que a ponta de prova foi acionada repetidas vezes em
+um curto espaço de tempo, quando na verdade foi apenas uma vez.
+  Devido a isso, foi necessário o desenvolvimento de um módulo de Antibouncing
+integrado ao sistema para lidar com o problema. Usando técnicas de desenvolvimento
+de máquinas sequenciais conseguimos que o sinal de entrada similar ao da imagem A
+fosse manipulado, gerando uma saída como o apresentado na imagem B.
+
+
 * Explicar necessidade do Timeout
