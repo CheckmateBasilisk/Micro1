@@ -7,9 +7,8 @@ Materiais e Metodologia:
   Para o desenvolvimento e teste de todas as etapas do projeto foi utilizada a placa
 UP Educational Board, que está representada detalhadamente pela imagem 1.
 
-//Imagem 1
+//Imagem da placa
 
-  Dentre os diversos elementos da
 
 * Explicar necessidade do Antibouncing
 
@@ -27,8 +26,8 @@ integrado ao sistema para lidar com o problema. Usando técnicas de desenvolvime
 de máquinas sequenciais conseguimos que o sinal de entrada similar ao da imagem A
 fosse manipulado, gerando uma saída como o apresentado na imagem B.
 
-//Imagem A
-//Imagem B
+//Imagem A (sinal com bouncing)
+//Imagem B (sinal sem bouncing)
 
 
 * Explicar necessidade do Timeout
