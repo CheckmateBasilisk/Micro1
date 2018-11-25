@@ -1,0 +1,20 @@
+Materiais e Metodologia:
+
+* Explicar a Placa
+
+  Foram desenvolvidos circuitos digitais sequenciais síncronos em lógica reconfigurável
+e para tal, o grupo realizou estudos, auxiliados pelo professor, sobre geração de
+circuitos sequenciais.
+  O identificador de fase foi implementado por uma abordagem a partir de unidades
+funcionais interligadas por dutos de fluxo de dados comandados por um circuito
+sequencial denominado unidade de controle, construída com a abordagem tradicional
+de uma máquina de estados.
+  A tomada da fase de referência em um único momento inicial da jornada de trabalho
+fez com que erros de medida do período de oscilação da fase implicassem em um
+limitado tempo de operação confiável do equipamento. Conceitos como erro, precisão,
+repetibilidade, acurácia, leiturabilidade e outros próprios da instrumentação
+requisitaram um estudo prévio e tornaram-se de domínio do aluno.
+
+
+* Explicar necessidade do Antibouncing
+* Explicar necessidade do Timeout
