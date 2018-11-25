@@ -11,7 +11,7 @@ A principio, sabemos que os sinais trifásicos possuem defasagem de 120º entre 
 	\caption{Sinais RST}
 	\fbox{\includegraphics[width=16cm]{images/sinalRST}}
 	\label{fig:sinais-rst}
-\end{figure}
+\end{figure}Discu\303\247\303\2
 
 O primeiro passo foi elaborar um diagrama de sequência que satisfaça as condições para a geração dos sinais.
 
@@ -100,18 +100,17 @@ Utilizando a unidade X2 para sincronizar os comandos faz com que exista a geraç
 	\item Exite o caso em que o sinal de entrada é inserido exatamente antes da borda de subida do clock, então a zeragem do contador possuirá um atraso de 0,5 clock, ou seja, um erro de -0,5 clock, porém note que no valor registrado é desconsiderado 0,5 clock, com isto é gerado mais um erro de -0,5 clock, mostrado na Figura \ref{fig:erro-leitura1};
 \end{itemize}
 
+
+\begin{itemize}	
+	\item No caso em que o sinal de entrada é inserido exatamente depois da borda de subida do clock, o contador será zerado com um atraso de 1,5 clocks, ou seja, com um erro de -1,5 clocks. Além disto o valor é registrado com 1 clock a mais, gerando um erro de +0,5 clock na leitura, representado pela Figura \ref{fig:erro-leitura2}.
+\end{itemize}
+
 \begin{figure}[!htp]
 	\centering
 	\caption{Entrada exatamente antes da borda de subida}
 	\includegraphics[width=7cm,height=7cm]{images/erro-leitura1}
 	\label{fig:erro-leitura1}
 \end{figure}
-
-\clearpage
-
-\begin{itemize}	
-	\item No caso em que o sinal de entrada é inserido exatamente depois da borda de subida do clock, o contador será zerado com um atraso de 1,5 clocks, ou seja, com um erro de -1,5 clocks. Além disto o valor é registrado com 1 clock a mais, gerando um erro de +0,5 clock na leitura, representado pela Figura \ref{fig:erro-leitura2}.
-\end{itemize}
 
 \begin{figure}[!htp]
 	\centering
@@ -167,16 +166,48 @@ Indo para o estado 10, onde é gerado um sinal Cl para manter o sincronismo com 
 
 A partir deste diagrama de estado podemos construir o circuito da Figura \ref{fig:gerador}. Note que parte do circuito foi reaproveitado, o contador e o registrador. O comparador abaixo (inst 11) faz a comparação entre o sinal corrente e o valor de frequência armazenado, gerando assim o sinal Comp que é utilizado pela UC. Tal sinal, possui um ciclo ativo muito pequeno, que impede a visualização deste em um osciloscópio, a fim de gerar um sinal capaz de ser visualizado foi inserido o comparador na parte superior (inst 10), que irá comparar a contagem em curso com a metade da contagem registrada que será obtido do registrador de deslocamento ao lado (inst 5), fazendo com que o sinal "copia" de saída possua ciclo ativo de 50\% síncrono com o sinal de entrada.
 
+Outra mudança necessário foi a troca do registrador (inst9) para um que começasse com o valor máximo possível, ou seja, todos os bits em 1. Isto se deve pois, como o lpm\_counter1 (inst 8) começa sempre em 1, e se o comparador começar em 0, o sinal Comp não será ativado corretamente.
+
 \begin{figure}[!htp]
 	\centering
 	\caption{Diagrama de estados da nova UC}
-	\fbox{\includegraphics[width=16cm,height=7cm]{images/gerador}}
+	\includegraphics[width=16cm,height=7cm]{images/gerador}
 	\label{fig:gerador}
 \end{figure}
 
 \section{Comparador de Fase}
 
+Após inserir um sinal de entrada, o circuito é capaz de gerar uma cópia desta fase, porém, é impossível descobrir qual fase foi inserida (R, S ou T), para isso, foi implementado três botões (Rin, Sin e Tin) que devem ser pressionados para indicar qual fase foi inserida inicialmente.
 
+Ao pressionar um dos botões de entrada, a saída LedOutput deve ser equivalente ao botão pressionado, isso acontece até que se tire o dedo do botão. Assim quando chegar um novo sinal de Clear, não existirá mais sinal desses botão, contudo a saída deve continuar a mesma, isto porque a lógica do componente saidaLed é realimentada com os valores de Rout, Sout e Tout. Apenas terá alteração na saída ao colocar um novo sinal na ponta de prova.
+
+\subsection{Máquina sequencial CompFase}
+
+Neste ponto, a máquina está pronta para executar a leitura de uma nova fase para fazer a comparação. A máquina sequencial da Figura \ref{fig:comp-fase} sinaliza se o novo sinal de entrada está igual a fase de referencia, se é a fase anterior (na sequencia RST) ou a fase posterior, para isto utiliza a seguinte lógica:
+\begin{itemize}
+	\item estados começando em 00, indicam que a fase inserida é igual a fase de referencia;
+	\item estados começando em 01, indicam que a fase inserida é a posterior à fase de referencia;
+	\item estados começando em 10, indicam que a fase inserida é a anterior à fase de referencia.
+\end{itemize}
+
+Perceba que o ultimo bit serve para diferenciar os estados cujos valores de saídas são iguais.
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Diagrama de estados da comparadora de fases}
+	\fbox{\includegraphics[width=16cm,]{images/comp-fase}}
+	\label{fig:comp-fase}
+\end{figure}
+
+\subsection{Circuito CompFase}
+
+A partir da máquina sequencial apresentada, pode-se construir o circuito da Figura \ref{fig:circuito-compfase}.
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Circuito CompFase}
+	\includegraphics[width=16cm]{images/circuito-compfase}	\label{fig:circuito-compfase}
+\end{figure}
 
 Para utilizar o método de comparação de fases requer uma frequência de seis vezes a frequência da fase de referência. Assim, o contador Ipm\_counter3 (inst) gera esta frequência dividindo o clock por seis, sendo então utilizado para realizar uma contagem entre as bordas de subida da fase de referência pelo contador Ipm\_counter5 (inst2), resultando em uma contagem truncada em $\frac{1}{6}$ do período da fase de referência, sendo armazenada em um registrador Ipm\_dff1 (inst3) pelo pulso Ld.
 
@@ -185,3 +216,92 @@ frequência original do circuito, é utilizado um Clear assíncrono que ocorre n
 
 O comparador Ipm\_compare (inst4) provém então o clock necessário para a
 máquina comparadora de fases, e realiza também o Clear do contador Ipm\_counter4 (inst1), através da comparação entre a contagem truncada em $\frac{1}{6}$ do período da fase de referência e a do próprio contador, após o atraso de meio período de clock, obtido com o flip-flop tipo D DFF (inst9), pois sua saída também ocorre em uma borda de descida. Como uma divisão por seis pode envolver resto, o contador Ipm\_counter4 (inst1) também recebe outro sinal de Clear através da porta "OU" OR2 (inst5) produzido a cada período da fase de referência, evitando-se o acúmulo de erros.
+
+\section{Timeout}
+
+Na seção 3.3, em que corrigimos o problema de erro aleatório na leitura da fase de referência, foi dito que aquilo era o suficiente para acabar com os erros de leitura, uma vez que, os erros variam de acordo com uma distribuição de probabilidade continua com centro em 0, isto é, pode variar de -1 a +1 clock de erro.
+
+Este valor pode parecer pequeno, mas este erro se repete a cada novo período enquanto se espera a conexão da nova fase de referência à ponta de prova. O sinal gerado internamente se defasa em relação a fase de referência para mais ou para menos.
+
+Se o acumulo deste erro se torna muito grande então a comparação pode não ser tão precisa, pois, no caso em que a fase R é inserida como fase de referencia, após a cópia se defasar em $\frac{1}{6}$ para menos em relação a fase de referencia e inserindo novamente uma fase R para fazer a comparação, tal situação se confunde com o caso em que é inserido a fase S para fazer a comparação e a cópia se defasou em $\frac{1}{6}$ para mais.
+
+Para corrigir isto criou-se o circuito Timeout, que nada mais é do que um "temporizador". Este circuito ira executar uma contagem decrescente, até que a fase de referencia esteja defasada (situação limite é quando esta atinge $\frac{1}{6}$ de erro). Ao atingir o valor 0, a máquina será travada, indicando que o sinal copiado não é mais confiável, necessitando de uma nova leitura para a fase de referencia.
+
+O tempo deste Timeout pode ser estimado, sendo sua fórmula do tipo: $$Timeout = \frac{Clock}{\left(\left. 6 \right. . \left. \left(frequencia\right)^2\right.\right)}$$
+
+Sendo o clock da placa igual a $25175$MHz e a frequência da rede entre $60$Hz a $70$Hz, temos o tempo aproximadamente de $856s$, equivalente a 14 minutos e 16 segundos.
+
+\subsection{Circuito contador}
+
+Para fazer a contagem, construiu o circuito da Figura \ref{fig:timeout}.
+O contador lpm\_counter5 (inst8) irá dividir o clock de $25175$MHz por dois, gerando um sinal de $2$Hz que será divido novamente por 2 pelo flip-flop tipo T gerando um sinal de $1$Hz. Tal sinal é então dividido pelo contador de módulo 60 (inst3) produzindo um pulso a cada minuto. Os contadores à direita irão receber estes sinal, sendo que os dois superiores executam a contagem em segundos e os inferiores a contagem em minutos, o cout dos contadores de unidades servem para acionar os contadores de dezenas.
+
+O valor inicial calculado acima é inserido através dos pinos aset (Asynchronous Set) dos contadores.
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Circuito de contagem do timeout}
+	\includegraphics[height=13cm]{images/timeout}
+	\label{fig:timeout}
+\end{figure}
+
+Quando tais contadores de tempo em minutos alcança 00 é produzido o sinal que deverá travar a máquina toda até que nova fase seja colocada na ponta de prova e esta seja identificada pelo pressionar de um dos botões.
+
+\subsection{Circuito apresentador do Timeout}
+
+Ao atingir o valor de 2 minutos, o contador de segundo deverá estar com tempo restante de 20 segundos, após passar este tempo, a contagem passará a mostrar apenas o valor em segundos, sendo o que este começará em 99 segundos. A combinação entre o valor 2 dos minutos com o 9 dos segundos gera o sinal MIN\_SEC que irá alterar a contagem apenas para segundos. O circuito que faz tão função é representado pela Figura \ref{fig:display-timeout}
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Circuito do display do Timeout}
+	\includegraphics[width=16cm]{images/display-timeout}	\label{fig:display-timeout}
+\end{figure}
+
+O bloco lógico Time\_out é representado pelo seguinte diagrama de estado, Figura \ref{fig:diagrama-de-estado-display-timeout}. O circuito irá para o estado 3, onde a contagem de minutos esta ativa, nos estados 1 e 2, a contagem de minutos é desativada. Quando a máquina está nos estados 2 e 3, os pinos enable dos contadores estarão ativos, liberando os contadores para continuarem a contar, porém, no estado 1 estes enables são desativados, travando a contagem.
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Diagrama de estado do diplay do Timeout}
+	\fbox{\includegraphics{images/diagrama-de-estado-display-timeout}}
+	\label{fig:diagrama-de-estado-display-timeout}
+\end{figure}
+
+A transição do estado 3 para o 2 ocorre quando o sinal MIN\_SEC estiver em 1, ou seja, quando a contagem atinge 99 segundos. No estado 2, caso a ponta de prova seja conectada antes do termino do tempo de timeout, a máquina voltará para o estado 3, do contrario ele irá para o estado 1, onde irá ficar travada até que aja uma nova leitura na ponta de prova.
+
+\section{Antibouncing}
+
+Ao conectar a ponta de prova ao sinal de referencia ocorre um fenômeno chamado de bouncing, que consistem em oscilações aleatórias geradas pelo contato mecânico entre o fio e a ponta de prova. Isto ocorre devido à condição física dos conectores, uma vez que estes possuem uma superfície rugosa causando uma instabilidade inicial, que provocam pequenas oscilações. Este fenômeno é representado pela Figura \ref{fig:bounceTimingDiagram}
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Fenômeno Antibouncing}
+	\fbox{\includegraphics[width=10cm,height=4cm]{images/bounceTimingDiagram}}
+	\label{fig:bounceTimingDiagram}
+\end{figure}
+
+Tais oscilações podem influenciar nos resultados, fazendo com que a máquina sequencial transite pelos estados sem ter um sinal confiável.
+
+Para corrigir este problema, foi proposto a seguinte máquina sequencial (Figura \ref{fig:antibouncing-diagrama}) que servirá como Unidade de controle do gerador da cópia. Basicamente ele irá travar a leitura até que se passe um tempo necessário para as entradas se estabilizarem.
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Diagrama de estado da Unidade Antibouncing}
+	\fbox{\includegraphics{images/antibouncing-diagrama}}
+	\label{fig:antibouncing-diagrama}
+\end{figure}
+
+Ao iniciar a máquina, ela permanecerá no estado 1 até que uma ponta de prova seja conectada ao dispositivo e o tempo característico de bouncing ja tenha passado e o sinal H, que é recebido através do pressionar de um dos botões que indicam qual é a fase inserida, esteja em 1. Se estas condições forem cumpridas então a máquina evoluirá para o estado 9, onde produzirá um sinal Rf (Reset Flag), por um clock, e irá para o estado 12 caso o sinal Comp esteja em 1, do contrário irá para 10. O caso em que Comp estiver em 1 significa que houve um transcurso de mais um período registrado, para isto, é necessário então que o sinal Cl esteja em 1, Cl é colocado em nível alto, por um clock, no estado 12 e em seguida ele irá para o estado 10.
+
+A máquina ficará no ciclo entre o estado 10 e 12 até que o sinal F esteja em 1, ou seja, até passar o tempo característico de bouncing. Os estados 2 e 3 irão permitir a detecção da próxima borda de subida da fase. No estado 4, é gerado um sinal Cl, que irá zerar o contador de período, no estado 5 e 6 seja possível fazer a contagem do período corretamente e então salvando-o no estado 7 com um sinal Ld e outro Cl, para finalmente retornar ao estado 1.
+
+Neste ponto, sempre que o sinal Comp estiver em 1 a máquina irá para o estado 8, em que será gerado um sinal Cl para mantar o sincronismos com a fase de referencia. Caso a ponta de prova ainda esteja conectada e em nível alto, a máquina irá para o estado 11, para gerar um sinal Rf para impedir que F seja ativada, e logo em seguida irá voltar para o estado 1 ou primeiro irá para o estado 8, pela necessidade de um clear e em seguida retornará ao 1.
+
+A partir deste diagrama foi construído o circuito da Figura \ref{fig:antibouncing-uc}.
+
+\begin{figure}[!htp]
+	\centering
+	\caption{Circuito da Unidade de controle com Antibouncing}
+	\includegraphics[width=16cm]{images/antibouncing-uc}	\label{fig:antibouncing-uc}
+\end{figure}
+
+O sinal Rf que é gerado para não permitir que a entrada F esteja em 1 nada mais é do que um sclr (Synchronous clear) do lpm\_counter (inst14). Este contador irá marcar o tempo característico de bouncing, ao final desta contagem, o sinal cout (Carry out) será expelido, indicando que o contador atingiu o seu limite, ou seja, passou-se o tempo necessário. Note que esta saída influencia o próprio contador, uma vez que o sinal cout é inserido na entrada cnt\_en (Counter Enable). Ao inseri-la, o contador será desativado, até que seja dado um clear.

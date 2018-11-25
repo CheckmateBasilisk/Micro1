@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  25 NOV 2018 18:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.25)  25 NOV 2018 18:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -534,10 +534,57 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.14 \end{figure}
-                 
+                 Discu\303\247\303\2
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
+
+Missing character: There is no D in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
+! Undefined control sequence.
+l.14 \end{figure}Discu\3
+                        03\247\303\2
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 3 in font nullfont!
+! Undefined control sequence.
+l.14 \end{figure}Discu\303\2
+                            47\303\2
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no 7 in font nullfont!
+! Undefined control sequence.
+l.14 \end{figure}Discu\303\247\3
+                                03\2
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 3 in font nullfont!
+! Undefined control sequence.
+l.14 \end{figure}Discu\303\247\303\2
+                                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 9--15
