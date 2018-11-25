@@ -1,14 +1,32 @@
 Materiais e Metodologia:
 
-* Explicar a Placa
+* Explicar a Placa/Quartus
 
 //Seção
 
-  Para o desenvolvimento e teste de todas as etapas do projeto foi utilizada a placa
-UP Educational Board, que está representada detalhadamente pela imagem 1.
+  Para a etapa de projeto conceitual e virtual dos módulos do circuito foi utilizado
+o software Quartus na sua versão 9.0 com licença universitária.
+  Constituindo as funcionalidades do Quartus temos a área de trabalho do projeto,
+em que podem ser arrastados elementos de hardware como portas lógicas, pinos de
+entrada e saída, flip-flops, fios, barramentos e muito mais.
+  Além da área de trabalho temos a opção de fazer alterações nos componentes do
+circuito por meio do uso de HDL (Linguagem de Descrição de Hardware), e também é
+possível executar testes funcionais e/ou de tempo para verificar a integridade dos
+módulos desenvolvidos antes de testá-los na placa física.
+  A figura X mostra a interface do usuário do Quartus versão 9.0.
 
-//Imagem da placa
+//Figura X (interface-quartus)
 
+//Seção
+
+  Juntamente com o software Quartus versão 9.0, foi usada para o desenvolvimento e teste
+de todas as etapas do projeto a placa UP Educational Board, que está representada
+detalhadamente pela imagem 1.
+
+//Imagem da placa_1
+
+  Alguns dos elementos da placa usados para a simulação do funcionamento dos módulos
+foram os pinos de entrada e saídas de led para identificar saídas do circuito.
 
 * Explicar necessidade do Antibouncing
 
