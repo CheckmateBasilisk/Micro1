@@ -133,13 +133,13 @@ Alguns dos elementos da placa utilizados na simulação do funcionamento dos mó
 %* Explicar necessidade do Antibouncing
 \section{Efeito de Bouncing e o Módulo Antibouncing}
 
-Ao trabalhar com aparatos que envolvem peças mecânicas duras, tais como pontas de prova, há a ocorrência de um efeito conhecido como \textit{“bouncing”}. Tal efeito é caracterizado por “idas” e “vindas” ou "conecta-desconecta", causando flutuações imprevisíveis entre leituras (bouncing entre o nível lógico alto e o nível
-lógico baixo neste projeto), antes dos sinais tornarem-se efetivamente válidos. O efeito de bouncing tem origem nas forças ação e reação que surgem no contato entre as peças, fazendo com que uma quique na outra por um momento.
+Ao trabalhar com aparatos que envolvem peças mecânicas duras e com micro rugosidades, tais como pontas de prova, há a ocorrência de um efeito conhecido como \textit{“bouncing”}. Tal efeito é caracterizado por “idas” e “vindas” ou "conecta-desconecta", causando flutuações imprevisíveis entre leituras (bouncing entre o nível lógico alto e o nível
+lógico baixo neste projeto), antes dos sinais tornarem-se efetivamente válidos. O efeito de bouncing tem origem nas forças ação e reação que surgem no contato entre as peças e imperfeições miúdas no material, fazendo com que uma quique na outra por um momento.
 
 As rápidas oscilações provenientes do efeito de bouncing podem
 gerar acionamentos indevidos no circuito, já que a interpretação dos sinais é de que o contato (ponta de prova neste projeto) foi acionado repetidas vezes em um curto espaço de tempo, quando, no caso de uma ponta de prova, pretendia-se gerar um único contato.
 
-Com o efeito em mente, viu-se necessário o desenvolvimento de um módulo de Antibouncing integrado ao sistema, capaz lidar com o problema. Utilizando técnicas de desenvolvimento de máquinas sequenciais pode-se fazer com que o sinal de entrada similar ao da imagem A seja manipulado, gerando uma saída como o apresentado na imagem B. Efetivamente, ignora-se as entradas vindas de uma ponta de prova por um período característico de bouncing obtido experimentalmente (função dos materiais e inflenciado pela perícia do operador).
+Com o efeito em mente, viu-se necessário o desenvolvimento de um módulo de Antibouncing integrado ao sistema, capaz lidar com o problema. Utilizando técnicas de desenvolvimento de máquinas sequenciais pode-se fazer com que o sinal de entrada similar ao da Figura ~\ref{fig:sinal-com-bouncing} seja manipulado, gerando uma saída como o apresentado na Figura ~\ref{fig:sinal-sem-bouncing}. Efetivamente, ignora-se as entradas vindas de uma ponta de prova por um período característico de bouncing obtido experimentalmente (função dos materiais e inflenciado pela perícia do operador).
 
 %Imagem A (sinal com bouncing)
 \begin{figure}[!htp]
@@ -336,7 +336,7 @@ Chegando ao estado 4, o sinal Cl permanecerá em nível alto, limpado assim o co
 
 O sinal Comp permanecerá em 1 sempre que o contador atingir o valor lido nos estado 4, 5 e 6, ou seja, quando completar um período da fase de entrada.
 
-Indo para o estado 10, no qual é gerado um sinal Cl para manter o sincronismo com a fase lida e então passa para o estado 1. A partir deste ponto o a maquina fica repetidamente indo do estado 1 para o 10, esta transição irá ocorrer sempre que o sinal de entrada estiver em 0 e o Comp estiver em alto, ou seja, sempre ao fim de um período.
+No estado 10, é gerado um sinal Cl para manter o sincronismo com a fase lida e então a maquina retorna para o estado 1. A partir deste ponto o a maquina fica repetidamente indo do estado 1 para o 10 e  depois para 1 novamente, esta transição irá ocorrer sempre que o sinal de entrada estiver em 0 e o Comp estiver em alto, ou seja, sempre ao fim de um período.
 
 A partir deste diagrama de estado pode-se construir o circuito da Figura \ref{fig:gerador}. Note que reaproveitou-se parte do circuito: o contador e o registrador. O comparador abaixo (inst 11) faz a comparação entre o sinal corrente e o valor de frequência armazenado, gerando assim o sinal Comp que é utilizado pela UC. Tal sinal, possui um ciclo ativo muito pequeno, que impede a visualização deste em um osciloscópio, a fim de gerar um sinal capaz de ser visualizado foi inserido o comparador na parte superior (inst 10), que irá comparar a contagem em curso com a metade da contagem registrada que será obtido do registrador de deslocamento ao lado (inst 5), fazendo com que o sinal "copia" de saída possua ciclo ativo de 50\% síncrono com o sinal de entrada.
 
@@ -445,7 +445,7 @@ A transição do estado 3 para o 2 ocorre quando o sinal MIN\_SEC estiver em 1, 
 
 \section{Anti bouncing}
 
-Ao conectar a ponta de prova ao sinal de referencia ocorre um fenômeno chamado de bouncing, que consistem em oscilações aleatórias geradas pelo contato mecânico entre o fio e a ponta de prova. Isto ocorre devido à condição física dos conectores, uma vez que estes possuem uma superfície rugosa causando uma instabilidade inicial, que provocam pequenas oscilações. Este fenômeno é representado pela Figura \ref{fig:bounceTimingDiagram}
+%Ao conectar a ponta de prova ao sinal de referencia ocorre um fenômeno chamado de bouncing, que consistem em oscilações aleatórias geradas pelo contato mecânico entre o fio e a ponta de prova. Isto ocorre devido à condição física dos conectores, uma vez que estes possuem uma superfície rugosa causando uma instabilidade inicial, que provocam pequenas oscilações. Este fenômeno é representado pela Figura \ref{fig:bounceTimingDiagram}
 
 \begin{figure}[!htp]
 	\centering
@@ -454,9 +454,9 @@ Ao conectar a ponta de prova ao sinal de referencia ocorre um fenômeno chamado 
 	\label{fig:bounceTimingDiagram}
 \end{figure}
 
-Tais oscilações podem influenciar nos resultados, fazendo com que a máquina sequencial transite pelos estados sem ter um sinal confiável.
+As oscilações geradas pelo efeito de bouncing (Fig ~\ref{fig:bounceTimingDiagram}) são capazes de influenciar os resultados, fazendo com que a máquina sequencial transite pelos estados sem ter um sinal confiável.
 
-Para corrigir este problema, foi proposto a seguinte máquina sequencial (Figura \ref{fig:antibouncing-diagrama}) que servirá como Unidade de controle do gerador da cópia. Basicamente ele irá travar a leitura até que se passe um tempo necessário para as entradas se estabilizarem.
+Para corrigir este problema, foi proposta a seguinte máquina sequencial (Figura \ref{fig:antibouncing-diagrama}) que servirá como Unidade de controle do gerador da cópia. Basicamente ela irá travar a leitura até que se passe um tempo necessário para as entradas se estabilizarem, chamado Tempo Característico de Bouncing.
 
 \begin{figure}[!htp]
 	\centering
@@ -499,7 +499,9 @@ Este circuito foi testado na placa utilizando os displays de 7 seguimentos prese
 
 \subsection{Teste - Gerador e Anti bouncing}
 
-Para conseguir teste esta parte foi necessário assumir quer o sinal H sempre estaria em 1, isto porque a parte da implementação dos botões que indicariam qual é a fase de entrada não havia sido implementada neste ponto. O sinal de entrada utilizado foi gerado pelo emulador RST e para simular o fenômeno de bouncing utilizamos um multiplexador que simularia uma instabilidade na entrada.
+
+
+Para conseguir testar esta parte foi necessário assumir quer o sinal H sempre estaria em 1; isto porque a parte da implementação dos botões que indicariam qual é a fase de entrada não havia sido implementada até então. O sinal de entrada utilizado foi gerado pelo emulador RST e para simular o fenômeno de bouncing utilizamos um multiplexador que simularia uma instabilidade na entrada.
 2777 ns
 O teste foi feito com o clock em 2777ns no circuito da Figura \ref{fig:teste-antibouncing}.
 
@@ -511,7 +513,7 @@ O teste foi feito com o clock em 2777ns no circuito da Figura \ref{fig:teste-ant
 
 Note que a parte inferior do circuito é idêntica ao emulador RST, a única mudança é o multiplex inserido nas saídas deste. O pino de entrada PP foi utilizado para selecionar uma das fases que seriam retroalimentadas na Unidade com o anti bouncing.
 
-Outra mudança necessário foi a alteração do módulo do contador lpm\_counter (inst4) da Figura \ref{fig:antibouncing-uc} para 400, pois do contrário o tempo característico de bouncing iria ser muito grande e então não seria possível ver o funcionamento do circuito.
+Outra mudança necessária foi a alteração do módulo do contador lpm\_counter (inst4) da Figura \ref{fig:antibouncing-uc} para 400, pois do contrário o tempo característico de bouncing seria grande demais e não seria possível ver o funcionamento do circuito.
 
 Para a execução do teste foi inserido inicialmente o sinal R para que seja executado a cópia e depois que o sinal de referencia estivesse sincronizado, a ponta de prova foi colocada em nível baixo, e em seguida inserido o sinal S.
 
@@ -531,7 +533,7 @@ Note que assim que começamos a criar o fenômeno de bouncing no pino PP um sina
 	\includegraphics[width=16cm]{images/teste-resultados-antibouncing2}	\label{fig:teste-resultados-antibouncing2}
 \end{figure}
 
-Também foi simulado a retida da ponta de prova, para isto também a simulação do fenômeno de bouncing, este teste está representado na Figura \ref{fig:teste-resultados-antibouncing2}. Quando começamos a gerar a instabilidade na ponta de prova, vários Rf são feitos, até que PP se torna 0 e os pulsos em Rf para, porém, o pino cópia continua a gerar um sinal em sincronia com o sinal R.
+Também foi simulada a retida da ponta de prova, para isto também a simulação do fenômeno de bouncing, este teste está representado na Figura \ref{fig:teste-resultados-antibouncing2}. Quando começamos a gerar a instabilidade na ponta de prova, vários Rf são feitos, até que PP se torna 0 e os pulsos em Rf para, porém, o pino cópia continua a gerar um sinal em sincronia com o sinal R.
 
 \begin{figure}[!htp]
 	\centering
@@ -539,17 +541,25 @@ Também foi simulado a retida da ponta de prova, para isto também a simulação
 	\includegraphics[width=16cm]{images/teste-resultados-antibouncing3}	\label{fig:teste-resultados-antibouncing3}
 \end{figure}
 
-Ainda neste mesmo teste, simulamos a inserção de uma nova fase de referencia, representado pela Figura \ref{fig:teste-resultados-antibouncing3}. A princípio começamos a gerar a instabilidade no sinal de PP, assim como na primeira leitura, é gerado um pulson em Rf para zerar o contador da UC e começar a contar o tempo característico de bouncing. 
+Ainda neste mesmo teste, simulamos a inserção de uma nova fase de referência, representado pela Figura \ref{fig:teste-resultados-antibouncing3}. A princípio começamos a gerar a instabilidade no sinal de PP, assim como na primeira leitura, é gerado um pulso em Rf para zerar o contador da UC e começar a contar o tempo característico de bouncing. 
 
-O fim deste tempo acontece quando F volta para o nível alto e então é gerado um sinal Cl na primeira borda de subida de S depois do tempo de bouncing. Ao fim deste período é gerado os sinais Cl e Ld, assim como na primeira leitura. Note que antes deste do primeiro Cl depois do tempo característico de bouncing o sinal de cópia ainda era igual a R, após isto, o sinal passa a ser igual ao S.
+O fim deste tempo se dá quando F volta para o nível alto e então é gerado um sinal Cl na primeira borda de subida de S depois do tempo de bouncing. Ao fim deste período é gerado os sinais Cl e Ld, assim como na primeira leitura. Note que antes deste do primeiro Cl depois do tempo característico de bouncing o sinal de cópia ainda era igual a R, após isto, o sinal passa a ser igual ao S.
 
 Este circuito foi testado na placa, porém não apresentou resultados positivos. Seu comportamento, quando rodando na placa, apresentava erros dos quais não fomos capazes de descobrir. Tentamos várias modificações, porém, alguns erros persistiam, outros sumiam e novos erros surgiam, impossibilitando uma conclusão precisa.
 
 \section{Teste - Demais componentes}
 
-Os demais componentes não foram possíveis de serem testados, devido a dúvidas de implementação, testes sem sucesso e falta de tempo.
+Não foi possível completar e os demais componentes devido a dúvidas de implementação, testes sem sucesso e falta de tempo. Ademais, o sistema de Timeout não pôde passar por simulações de timing devido à natureza retro-alimentada do mesmo; a qual o Quartus não é capaz de processar.
 
 \chapter{Conclusão}
+
+Tendo em vista o projeto todo fica clara a importância da familiaridade com as ferramentas e a imporância de tê-las da melhor qualidade. O design datado do Quartus 9.0 provou-se um empecilho ao grupo, aliado à falta de visão do todo e à limitada prática com esse tipo de ferramenta e hardware.
+
+Em retrospectiva, vários dos erros cometidos não são claros, ja que refazer o módulo defeituoso resolveu a maioria dos problemas. Contudo, foram diversas as situações que a experiência provou-se a chave.
+
+Certamente uma abordagem incremental para o desenvolvimento teria sido saudável, implementando parte a parte e testando-as conforme o projeto avança. Contudo, este era de difícil modularização além dos segmentos já propostos, os quais eram profundamente dependentes uns dos outros.
+
+Dos módulos propostos para o aparato, o emulador de sinais RST funcionou como proposto e foi testado na placa. Os módulo de Antibouncing foi testados em simulações de timing porém não produziu resultados positivos. Os módulos de Timeout e os leds finais não foram desenvolvidos por falta de tempo e devido aos problemas já citados.
 
 
 
