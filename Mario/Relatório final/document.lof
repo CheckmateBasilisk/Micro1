@@ -1,0 +1,27 @@
+\babel@toc {brazil}{}
+\contentsline {figure}{\numberline {1}{\ignorespaces Sinais RST}}{9}{figure.3.1}
+\contentsline {figure}{\numberline {2}{\ignorespaces Diagrama de Estado Emulador RST}}{9}{figure.3.2}
+\contentsline {figure}{\numberline {3}{\ignorespaces Tabela de estados e excita\IeC {\c c}\IeC {\~a}o dos Flip-flops Emulador RST}}{10}{figure.3.3}
+\contentsline {figure}{\numberline {4}{\ignorespaces Circuito do Emulador RST}}{10}{figure.3.4}
+\contentsline {figure}{\numberline {5}{\ignorespaces Circuito do Emulador RST com sa\IeC {\'\i }das a 60Hz}}{11}{figure.3.5}
+\contentsline {figure}{\numberline {6}{\ignorespaces Diagrama esquem\IeC {\'a}tico do medidor de per\IeC {\'\i }odo da fase de refer\IeC {\^e}ncia}}{11}{figure.3.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces Unidade X2}}{12}{figure.3.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces Entrada exatamente antes da borda de subida}}{13}{figure.3.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Entrada exatamente depois da borda de subida}}{13}{figure.3.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces Distribui\IeC {\c c}\IeC {\~a}o de probabilidade do erro}}{14}{figure.3.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Distribui\IeC {\c c}\IeC {\~a}o de probabilidade do erro com centro em 0}}{14}{figure.3.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Diagrama de estados da nova UC}}{15}{figure.3.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Diagrama de estados da nova UC}}{16}{figure.3.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces Diagrama de estados da comparadora de fases}}{17}{figure.3.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Circuito CompFase}}{17}{figure.3.15}
+\contentsline {figure}{\numberline {16}{\ignorespaces Circuito de contagem do timeout}}{19}{figure.3.16}
+\contentsline {figure}{\numberline {17}{\ignorespaces Circuito do display do Timeout}}{20}{figure.3.17}
+\contentsline {figure}{\numberline {18}{\ignorespaces Diagrama de estado do diplay do Timeout}}{21}{figure.3.18}
+\contentsline {figure}{\numberline {19}{\ignorespaces Fen\IeC {\^o}meno Anti bouncing}}{21}{figure.3.19}
+\contentsline {figure}{\numberline {20}{\ignorespaces Diagrama de estado da Unidade Anti bouncing}}{22}{figure.3.20}
+\contentsline {figure}{\numberline {21}{\ignorespaces Circuito da Unidade de controle com Anti bouncing}}{23}{figure.3.21}
+\contentsline {figure}{\numberline {22}{\ignorespaces Simula\IeC {\c c}\IeC {\~a}o funcional com o emulador de sinais RST}}{24}{figure.4.22}
+\contentsline {figure}{\numberline {23}{\ignorespaces Circuito de testes do Gerador e Anti bouncing}}{25}{figure.4.23}
+\contentsline {figure}{\numberline {24}{\ignorespaces Simula\IeC {\c c}\IeC {\~a}o funcional do Gerador e Anti bouncing - Parte 1}}{25}{figure.4.24}
+\contentsline {figure}{\numberline {25}{\ignorespaces Simula\IeC {\c c}\IeC {\~a}o funcional do Gerador e Anti bouncing - Parte 2}}{26}{figure.4.25}
+\contentsline {figure}{\numberline {26}{\ignorespaces Simula\IeC {\c c}\IeC {\~a}o funcional do Gerador e Anti bouncing - Parte 3}}{26}{figure.4.26}
