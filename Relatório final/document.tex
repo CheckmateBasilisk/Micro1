@@ -18,7 +18,7 @@
 \usepackage{float}
 
 \autor{Leonardo Mendonça de Araujo \and \\ Lucas Bagatini do Nascimento \and \\ Mário Muramatsu Júnior}
-\titulo{RELATÓRIO DE FINAL: IDENTIFICADOR DE SINAIS TRIFÁSICOS}
+\titulo{RELATÓRIO FINAL: IDENTIFICADOR DE SINAIS TRIFÁSICOS}
 \data{2018} 
 \local{Rio Claro, São Paulo}
 \preambulo{Monografia apresentada ao curso de Ciências da Computação, como requisito parcial para a obtenção do Título de Bacharel em Ciências da Computação, Instituto de Geociências e Ciências Exatas da Universidade Estadual Paulista}
@@ -47,7 +47,7 @@
 
 \section{Sistemas Elétricos Polifásicos}
 
-Naturalmente, sistemas elétricos funcionando em corrente alternada possuem picos e vales de tensão e, consequentemente, picos e vales de potência. A fim de mitigar esta ineficiência intrínseca, pode-se montar um sistema polifásico, ou seja, um sistema que fornece energia elétrica através de três ou mais condutores energizados.
+Naturalmente, sistemas elétricos funcionando em corrente alternada possuem picos e vales de tensão e, consequentemente, picos e vales de potência. A fim de mitigar esta ineficiência intrínseca, pode-se montar um sistema de corrente alternada polifásico, ou seja, um sistema que fornece energia elétrica através de três ou mais condutores energizados.
 
 As figuras ~\ref{fig:sinal-bifasico} e ~\ref{fig:sinal-trifasico} ilustram o comportamente da tensão em sistemas bifásicos e trifásicos, respectivamente. É trivial perceber que sistemas polifásicos são capazes de fornecer tensão e potência de maneira mais constante e sem necessitar de altos picos em cada uma de suas fases.
 
@@ -75,7 +75,7 @@ Um sinal trifásico, como da Figura ~\ref{fig:sinal-trifasico}, assim como outra
 \end{figure}
 
 
-https://youtu.be/4oRT7PoXSS0?t=345  em 5:45, acessado em 25/10/2018, 20:40
+%https://youtu.be/4oRT7PoXSS0?t=345  em 5:45, acessado em 25/10/2018, 20:40
 
 É possível, dada uma instalação trifásica, utilizar somente uma das fases em associação com o neutro para alimentar pequenos aparelhos, como lâmpadas e telas. Portanto, não é necessário ter duas redes elétricas dentro de uma mesma instalação industrial, por exemplo. Geralmente é desta maneira que energia elétrica é distribuída para residências, já que não espera-se que uma família tenha um forno industrial em sua cozinha.
 
@@ -83,7 +83,8 @@ https://youtu.be/4oRT7PoXSS0?t=345  em 5:45, acessado em 25/10/2018, 20:40
 
 Como discutido acima, um sistema trifásico de transmissão (que se utiliza de três condutores) de energia possui diversas vantagens sobre sistemas monofásicos (que usam dois condutores). Dentre eles, o mais notório é o ganho em custo-benefício de tal sistema. Pode-se transmitir o triplo da energia com somente 50\% de incremento nos custos. A partir de 3 fases o incremento no custo é grande demais para compensar os benefícios.
 
-Sistemas polifásicos são especialmente úteis e convenientes na construção e operação de motores elétricos, tal qual os motores de indução, por serem capazes de produzirem campos magnéticos rotativos de intensidades mais constantes e confiáveis. É possível alterar a frequência das três fases para alterar a velociade de rotação do motor, por exemplo. Motores de indução que utilizam corrente contínua requerem diversas peças adicionais, como transformadores, que encarecem o mecanismo final. Menores flutuações na potência entregue aos eixos também significa que menor stress será causado ao material, permitindo o uso de materiais mais baratos ou leves, aumentando ainda mais a eficiência e o custo-benefício.
+Sistemas polifásicos são especialmente úteis e convenientes na construção e operação de motores elétricos, tal qual os motores de indução, por serem capazes de produzirem campos magnéticos rotativos de intensidades mais constantes e confiáveis. É possível alterar a frequência das três fases para alterar a velociade de rotação do motor, por exemplo. Motores de indução que utilizam corrente contínua requerem diversas peças adicionais, como transformadores, que encarecem o mecanismo final. Menores flutuações na potência entregue aos eixos também significa que menor stress será causado ao material, permitindo o uso de materiais mais baratos ou leves, aumentando ainda mais a eficiência e o custo-benefício.https://youtu.be/4oRT7PoXSS0?t=345  em 5:45, acessado em 25/10/2018, 20:40
+
 
 De maneira análoga à motores de indução, sistemas de distribuição trifásicos são capazes de aproveitar mais da energia gerada por um gerador, como turbinas de uma hidrelétrica.
 
@@ -91,23 +92,22 @@ De maneira análoga à motores de indução, sistemas de distribuição trifási
 
 Ao longo de grandes instalações elétricas, ao se utilizar modelos trifásicos, deve-se garantir que os diversos dispositivos e conexões estão ligados às fases adequadas. Erros desta natureza podem causar desde ineficiência do maquinário ligado até catastróficos acidentes. A fim de auxiliar na tarefa, propõe-se que seja construído um Identificador de Fase para Sinais Trifásicos.
 
-Sabendo-se que dois condutores fazem parte de um mesmo sistema de transmissão trifásico ou rede de transmissão, o aparato deve ser capaz de fazer a leitura da frequência presente em um e compará-la à frequência do outro, indicando se há ou não defasagem entre ambos. Deve-se construir também um sistema que garanta a confiabilidade da leitura, indicando ao usuário quando o sinal lido anteriormente não é mais confiável. O aparato deve, também, mitigar variações momenâneas causadas pelo início da leitura, tal qual o repetido conecta-desconecta causado pelos imperceptíveis e repetidos choques, natural do contato inicial entre materiais duros, como o metal dos fios e a p.
+Sabendo-se que dois condutores fazem parte de um mesmo sistema de transmissão trifásico ou rede de transmissão, o aparato deve ser capaz de fazer a leitura da frequência presente em um e compará-la à frequência do outro, indicando se há ou não defasagem entre ambos. Deve-se construir também um sistema que garanta a confiabilidade da leitura, indicando ao usuário quando o sinal lido anteriormente não é mais confiável. O aparato deve, também, mitigar variações momenâneas causadas pelo início da leitura, tal qual o repetido conecta-desconecta causado pelos imperceptíveis e repetidos choques, natural do contato inicial entre materiais duros, como o metal dos fios e a ponta de prova.
 
-O usuário, após acoplar o aparato a condutor, terá consigo uma amostra da fase obtido através de contadores internos. Ao comparar o conteúdo do aparato com a fase de outro condutor, este indicará se há adianto ou atraso de um terço de um período dosegundo em relação ao primeiro. Parte-se do pressuposto que ambos têm frequências iguais, já que são leituras em partes distintas de uma mesma rede ou linha de transmissão.
+O usuário, após acoplar o aparato a condutor, terá consigo uma amostra da fase obtida através de contadores internos. Ao comparar o conteúdo do aparato com a fase de outro condutor, este indicará se há adianto ou atraso de um terço de um período do segundo em relação ao primeiro. Parte-se do pressuposto que ambos têm frequências iguais, já que são leituras em partes distintas de uma mesma rede ou linha de transmissão.
 
-Pode-se utilizar o aparato para garantir a sincronia entre duas linhas de transmissão distindas, regulando a frequência e fase da corrente alternada que passa por uma delas.
+Pode-se utilizar o aparato para garantir a sincronia entre duas linhas de transmissão distindas, regulando a frequência e fase da corrente alternada que passa por uma delas até que estejam equiparadas.
 
 \chapter{Materiais e Metodologia}
 
-Para a etapa de projeto conceitual e virtual dos módulos do circuito foi utilizado
-o software Quartus na sua versão 9.0 com licença universitária.
-Constituindo as funcionalidades do Quartus temos a área de trabalho do projeto,
-em que podem ser arrastados elementos de hardware como portas lógicas, pinos de
-entrada e saída, flip-flops, fios, barramentos e muito mais.
-Além da área de trabalho temos a opção de fazer alterações nos componentes do
-circuito por meio do uso de HDL (Linguagem de Descrição de Hardware), e também é
-possível executar testes funcionais e/ou de tempo para verificar a integridade dos
-módulos desenvolvidos antes de testá-los na placa física.
+\section{Equipamento: Software e Placa Altera}
+
+A fim de construir o aparato proposto, conceitualizou-se virtualmente o projeto através do software Quartus em sua versão 9.0 com licença universitária.
+
+O software consiste de diversas janelas e abas, principalmente a área de trabalho, para qual e sobre a qual qual podem ser arrastados diversos elementos de hardware como portas lógicas, pinos de entrada e saída, flip-flops, fios e barramentos.
+
+Além da área de trabalho, existe a opção de alterar os componentes do circuito por meio HDL (Linguagem de Descrição de Hardware). Também é possível executar testes funcionais e/ou de tempo para verificar a integridade dos módulos desenvolvidos antes de testá-los na placa física.
+
 A Figura ~\ref{fig:interface-quartus} mostra a interface do usuário do Quartus versão 9.0.
 
 %Figura X (interface-quartus)
@@ -118,11 +118,7 @@ A Figura ~\ref{fig:interface-quartus} mostra a interface do usuário do Quartus 
 	\label{fig:interface-quartus}
 \end{figure}
 
-\section{NOME DA SEÇÃO}
-
-Juntamente com o software Quartus versão 9.0, foi usada para o desenvolvimento e teste
-de todas as etapas do projeto a placa UP Educational Board, que está representada
-detalhadamente pela Figura ~\ref{fig:placa-1}.
+Em conjunto com o software Quartus versão 9.0, foi usada a placa UP Educational Board para o desenvolvimento e teste de todas as etapas do projeto; representada detalhadamente pela Figura ~\ref{fig:placa-1}.
 
 %Imagem da placa_1
 \begin{figure}[!htp]
@@ -132,23 +128,18 @@ detalhadamente pela Figura ~\ref{fig:placa-1}.
 	\label{fig:placa-1}
 \end{figure}
 
-Alguns dos elementos da placa usados para a simulação do funcionamento dos módulos
-foram os pinos de entrada e saídas de led para identificar saídas do circuito.
+Alguns dos elementos da placa utilizados na simulação do funcionamento dos módulos foram os pinos de entrada e saídas de led ( estes últimos para identificar resultados das operações executadas pelo circuito).
 
-* Explicar necessidade do Antibouncing
-\section{NOME DA SEÇÃO}
+%* Explicar necessidade do Antibouncing
+\section{Efeito de Bouncing e o Módulo Antibouncing}
 
-Quando trabalhamos com um circuito que envolve entradas mecânicas (como a ponta de prova),
-tem-se o surgimento de um efeito conhecido como “bouncing”.
-Esse efeito é caracterizado por “idas” e “vindas”, do nível lógico alto e o nível
-lógico baixo, antes de efetivamente estabilizar. Essas oscilações rápidas podem
-gerar acionamentos indevidos no nosso circuito. Pois o mesmo tende a interpretar
-que a ponta de prova foi acionada repetidas vezes em um curto espaço de tempo,
-quando na verdade foi apenas uma vez.
-Devido a isso, foi necessário o desenvolvimento de um módulo de Antibouncing
-integrado ao sistema para lidar com o problema. Usando técnicas de desenvolvimento
-de máquinas sequenciais conseguimos que o sinal de entrada similar ao da imagem A
-fosse manipulado, gerando uma saída como o apresentado na imagem B.
+Ao trabalhar com aparatos que envolvem peças mecânicas duras, tais como pontas de prova, há a ocorrência de um efeito conhecido como \textit{“bouncing”}. Tal efeito é caracterizado por “idas” e “vindas” ou "conecta-desconecta", causando flutuações imprevisíveis entre leituras (bouncing entre o nível lógico alto e o nível
+lógico baixo neste projeto), antes dos sinais tornarem-se efetivamente válidos. O efeito de bouncing tem origem nas forças ação e reação que surgem no contato entre as peças, fazendo com que uma quique na outra por um momento.
+
+As rápidas oscilações provenientes do efeito de bouncing podem
+gerar acionamentos indevidos no circuito, já que a interpretação dos sinais é de que o contato (ponta de prova neste projeto) foi acionado repetidas vezes em um curto espaço de tempo, quando, no caso de uma ponta de prova, pretendia-se gerar um único contato.
+
+Com o efeito em mente, viu-se necessário o desenvolvimento de um módulo de Antibouncing integrado ao sistema, capaz lidar com o problema. Utilizando técnicas de desenvolvimento de máquinas sequenciais pode-se fazer com que o sinal de entrada similar ao da imagem A seja manipulado, gerando uma saída como o apresentado na imagem B. Efetivamente, ignora-se as entradas vindas de uma ponta de prova por um período característico de bouncing obtido experimentalmente (função dos materiais e inflenciado pela perícia do operador).
 
 %Imagem A (sinal com bouncing)
 \begin{figure}[!htp]
@@ -167,28 +158,23 @@ fosse manipulado, gerando uma saída como o apresentado na imagem B.
 \end{figure}
 
 * Explicar necessidade do Timeout
-\section{NOME DA SEÇÃO}
+\section{Período de Timout e o Módulo de Timeout}
 
-Após ser implementado o módulo de AntiBouncing, o grupo se deparou com uma nova
-situação problemática, foi identificado que o sinal capturado pela ponta de prova
-(podendo ser R, S ou T), como já era esperado, começava a se defasar com o passar
-dos segundos, no entanto, depois de um período específico essa defasagem tornava-se
-tão severa que o sinal já não podia mais ser identificado como R,S ou T.
-Esse período foi chamado de período de Timeout do sinal obtido pela ponta de prova
-e foi necessário o desenvolvimento de um módulo adicional integrado ao sistema que
-fosse capaz de cronometrar esse período e que identificasse quando um sinal contido
-na entrada da ponta de prova seria confiável ou não.
-Se identificado o sinal não-confiável seria necessário a obtenção de um novo sinal
-por meio do acionamento da ponta de prova, tendo novamente um sinal aceitável para
-ser manipulado novamente pelos outros módulos do circuito.
+Após implementado o módulo de AntiBouncing, uma nova situação problemática se mostra: o sinal capturado através da ponta de prova (em fase com R, S ou T), com o passar dos segundos degrada-se e se defasa. Depois de um intervalo específico tal defasagem tornar-se-á
+tão severa que o sinal já não pode mais ser identificado como R,S ou T claramente, inutilizando a leitura do sinal capturado. Esse período é chamado de \textit{Período de Timeout} do sinal obtido da ponta de prova.
+
+Prova-se necessário, portanto, o desenvolvimento de um módulo adicional integrado ao sistema capaz de cronometrar esse período e identificar quando um sinal capturado através da ponta de prova se torna falível.
+
+Se identificado o sinal não-confiável, um led deve se acender e o aparato pára de funcionar, indicando a necessidade de uma nova leitura do sinal, garantindo novamente um sinal confiável para
+ser manipulado pelos outros módulos do circuito.
 
 \chapter{Discussão e Atividades}
 
 \section{Emulador RST}
 
-O primeiro passo para começarmos a desenvolver o projeto era criar uma representação do sinal trifásico, para que este sirva de referência para os testes futuros.
+O primeiro passo para desenvolver o projeto foi criar uma representação do sinal trifásico, para que este sirva de referência para os testes.
 
-A principio, sabemos que os sinais trifásicos possuem defasagem de 120º entre cada onda e oscilam a 60Hz, sendo assim, é necessário criar uma máquina sequencial que seja capaz de gerar tal sinal.
+A principio, sabemos que os sinais trifásicos possuem defasagem de 120º entre cada onda e assumimos que oscilam a 60Hz (a frequência da rede elétrica AC brasileira). Sendo assim, é necessário criar uma máquina sequencial que seja capaz de gerar tal sinal.
 
 \begin{figure}[!htp]
 	\centering
@@ -206,7 +192,7 @@ O primeiro passo foi elaborar um diagrama de sequência que satisfaça as condi�
 	\label{fig:disgrama-de-estado-EmuladorRST}
 \end{figure}
 
-Para a construção deste diagrama foi utilizado três bits para referenciar os estados, note que de um estado para outro apenas um bit é alterado, foi feita esta escolha pelo fato de que com isso a implementação do circuito iria ser simplificada. Montando a tabela de próximos estados e de excitação dos flip-flops.
+Utilizou-se três bits para referenciar os estados. Note que de um estado para outro apenas um bit é alterado. Foi feita esta escolha pelo fato de que a implementação do circuito seria simplificada. Montou-se a tabela de próximos estados e de excitação dos flip-flops (Figura ~\ref{fig:tabela-RST}).
 
 \begin{figure}[!htp]
 	\centering
@@ -215,7 +201,7 @@ Para a construção deste diagrama foi utilizado três bits para referenciar os 
 	\label{fig:tabela-RST}
 \end{figure}
 
-Utilizando Karnaugh para fazer a simplificações e encontrar as expressões de cada saída do circuito, encontramos que:
+Utilizando-se do método de Karnaugh para fazer a simplificações e encontrar as expressões de cada saída do circuito, obeve-se o seguinte:
 
 $$DR = Q1$$
 $$DS = \overline{Q0}$$
@@ -227,7 +213,7 @@ $$R = \overline{Q2}$$
 $$S = Q1$$
 $$T = Q0$$
 
-A partir disto podemos construir o circuito do emulador RST, representado pela Figura \ref{fig:circuito-RST}.
+A partir disto, construiu-se o circuito do emulador RST, representado pela Figura \ref{fig:circuito-RST}.
 
 \begin{figure}[!htp]
 	\centering
@@ -236,11 +222,11 @@ A partir disto podemos construir o circuito do emulador RST, representado pela F
 	\label{fig:circuito-RST}
 \end{figure}
 
-Tal circuito está gerando sinais periódicos defasados em 120º, porém apenas com isto não é possível que elas oscilem a 60Hz, pois a placa em que foram feito os teste possuí clock de 25.175MHz, portanto, é necessário reduzir o clock de entrada de tal circuito. 
+Tal circuito gera sinais periódicos defasados em 120º. Restava então regular a frequência para 60Hz. Contudo, a placa utilizada possui clock de 25.175MHz; fazendo-se necessário reduzir o clock de entrada do circuito. 
 
-Para fazer tal redução foi utilizado a saída Carry-out de um contador de módulo 34965 como o clock do nosso circuito RST, com isso o clock será dividido pelo módulo do contador. Mas isso ainda não é suficiente para alcançar os 60Hz, para atingir o valor correto foi inserido um flip-flop do tipo T para dividir o clock por dois, fazendo com que entre no circuito um sinal de 360Hz que será dividido por seis ao passar pelo emulador RST, devido ao fato desta ter 6 estados. Assim teremos os sinais RST a 60Hz.
+A fim de executar a redução, foi utilizada a saída Carry-out de um contador de módulo 34965 como o clock do circuito RST, garantindo que o clock original seja dividido pelo módulo do contador. O valor obtido foi dividido por 12 posteriormente: dividido por 2 através de um flip-flop tipo T e depois por 6 ao passar pelo emulador RST (por possuir 6 estados).
 
-A Figura \ref{fig:circuito-RST-complete} representa o circuito que gerará os sinais corretamente.
+A Figura \ref{fig:circuito-RST-complete} representa o circuito que gera os sinais corretamente.
 
 \begin{figure}[!htp]
 	\centering
@@ -249,9 +235,11 @@ A Figura \ref{fig:circuito-RST-complete} representa o circuito que gerará os si
 	\label{fig:circuito-RST-complete}
 \end{figure}
 
-\section{Medidor de Período}
+\section{Aferidor de Período}
 
-Primeiramente precisamos ser capazes de receber um sinal de entrada e interpreta-lo para que seja possível dizer qual das três fases foi inserida, então é necessário criar um circuito capaz de identificar qual é o período da fase inserida, representado pela Figura \ref{fig:diagrama-medidor-de-frequencia}.
+Construído o módulo gerador de sinais RST, faz-se necessário ser capaz de receber um sinal de entrada e interpreta-lo para que seja possível dizer com qual das três fases este está em sincronia. 
+
+A  Figura \ref{fig:diagrama-medidor-de-frequencia} descreve o circuito capaz de executar a tarefa.
 
 \begin{figure}[!htp]
 	\centering
@@ -260,10 +248,10 @@ Primeiramente precisamos ser capazes de receber um sinal de entrada e interpreta
 	\label{fig:diagrama-medidor-de-frequencia}
 \end{figure}
 
-Sabendo que o período é toda a extensão desde sua primeira
-borda de subida até a sua próxima borda de subida, então, para conseguir identifica-lo, foi utilizado um contador que irá contar o número de clocks dentro de um período e então armazena-lo em um registrador.
+Sabe-se que o período é toda a extensão desde sua primeira
+borda de subida até a sua próxima borda de subida, então, para identifica-lo, utilizou-se um contador que conta o número de ciclos dentro de um período e então armazena-o em um registrador.
 
-Ao inicio de cada período o contador é zerado através do sinal Cl da unidade de controle UCf, tal circuito será explicada mais a frente. no mesmo clock, através do sinal Ld o ultimo valor contado é transferido para o registrador, para que ambos comandos sejam executados em ordem correta foi criado a unidade X2.
+Ao inicio de cada período o contador é zerado através do sinal Cl da unidade de controle UCf. A Unidade de Controle será detalhada mais adiante. Entre um clock e outro, na borda de subida, através do sinal Ld, o ultimo valor contado é transferido para o registrador. Para que ambos os comandos sejam executados em ordem correta foi criado a unidade X2.
 
 \begin{figure}[!htp]
 	\centering
@@ -272,21 +260,21 @@ Ao inicio de cada período o contador é zerado através do sinal Cl da unidade 
 	\label{fig:unidade-x2}
 \end{figure}
 
-A única função da unidade da Figura \ref{fig:unidade-x2} é, a partir de uma entrada, no caso o clock, gerar duas saídas, uma idêntica ao sinal de entrada e a outra com o sinal negado.
+A única função da unidade da Figura \ref{fig:unidade-x2} é, a partir de uma entrada (no caso o clock), gerar duas saídas: uma idêntica ao sinal de entrada e a outra com o sinal negado.
 
-Note que, o clock do contador provem do sinal CK2 de X2, ou seja, tal contador trabalha na borda de descida do clock original, devido a isto os comandos Cl e Ld podem ser feitos no mesmo clock, uma vez que, assim que forem gerados sinais altos de Cl e Ld, na borda de subida do clock, o valor contado pelo contador é salvo no registrador e no borda de descida deste mesmo clock, é feito o clear do contador.
+Note que o clock do contador provém do sinal CK2 de X2, ou seja, tal contador trabalha na borda de descida do clock original. Devido a isto, os comandos Cl e Ld podem ser executados no mesmo clock, uma vez que, assim que forem gerados sinais altos de Cl e Ld, na borda de subida do clock, o valor contado pelo contador é salvo no registrador e no borda de descida deste mesmo clock, é feito o clear do contador.
 
 \section{Correção de Erro aleatório}
 
-Utilizando a unidade X2 para sincronizar os comandos faz com que exista a geração de um erro aleatório, possuindo dois casos extremos.
+Ao utilizar a unidade X2 para sincronizar os comandos, insere-se um erro aleatório à contagem. Há dois casos extremos:
 
 \begin{itemize}	
-	\item Exite o caso em que o sinal de entrada é inserido exatamente antes da borda de subida do clock, então a zeragem do contador possuirá um atraso de 0,5 clock, ou seja, um erro de -0,5 clock, porém note que no valor registrado é desconsiderado 0,5 clock, com isto é gerado mais um erro de -0,5 clock, mostrado na Figura \ref{fig:erro-leitura1};
+	\item O sinal de entrada é inserido exatamente antes da borda de subida do clock, fazendo com que a zeragem do contador possua um atraso de 0,5 clock, ou seja, um erro de -0,5 clock, porém note que no valor registrado é desconsiderado 0,5 clock, com isto é gerado mais um erro de -0,5 clock, mostrado na Figura \ref{fig:erro-leitura1};
 \end{itemize}
 
 
 \begin{itemize}	
-	\item No caso em que o sinal de entrada é inserido exatamente depois da borda de subida do clock, o contador será zerado com um atraso de 1,5 clocks, ou seja, com um erro de -1,5 clocks. Além disto o valor é registrado com 1 clock a mais, gerando um erro de +0,5 clock na leitura, representado pela Figura \ref{fig:erro-leitura2}.
+	\item O sinal de entrada é inserido exatamente depois da borda de subida do clock e o contador é zerado com um atraso de 1,5 clocks, ou seja, com um erro de -1,5 clocks. Além disso, o valor é registrado com 1 clock a mais, gerando um erro de +0,5 clock na leitura, representado pela Figura \ref{fig:erro-leitura2}.
 \end{itemize}
 
 \begin{figure}[!htp]
@@ -303,7 +291,7 @@ Utilizando a unidade X2 para sincronizar os comandos faz com que exista a geraç
 	\label{fig:erro-leitura2}
 \end{figure}
 
-Analisando todas as combinações de erros possíveis nos dois casos extremos e utilizando a operação de convolução para estimar a probabilidade conjunta do dois eventos (carga e zeragem), entao, pode-se concluir que há a geração de um erro aleatório do qual varia de acordo com uma distribuição de probabilidade contínua com centro em -1 e bordas em -2 e 0. A Figura \ref{fig:distribuicao-de-probabilidade-do-erro} representa tal distribuição.
+Analisando todas as combinações de erros possíveis nos dois casos extremos e utilizando a operação de convolução para estimar a probabilidade conjunta do dois eventos (carga e zeragem), conclui-se que há a inserção de um erro aleatório variando com distribuição de probabilidade com centro em -1 e bordas em -2 e 0 tal qual mostrado na Figura \ref{fig:distribuicao-de-probabilidade-do-erro}.
 
 \begin{figure}[!htp]
 	\centering
@@ -312,11 +300,13 @@ Analisando todas as combinações de erros possíveis nos dois casos extremos e 
 	\label{fig:distribuicao-de-probabilidade-do-erro}
 \end{figure}
 
-Note que, pelo fato da distribuição ter centro em -1, então o erro mais provável é o de -1 clock, ou seja, a cada leitura será perdido um clock da fase de entrada, fazendo com que as medições utilizem dados incorretos. O ideal nesta situação é que o centro da curva de distribuição de probabilidade seja exatamente em 0, assim o erro mais provável será de 0 clocks, tendo assim uma leitura mais correta da fase de entrada.
+Note que, pelo fato da distribuição ter centro em -1, o erro mais comum é o de -1 clock, ou seja, a cada leitura será perdido um clock da fase de entrada, tornando as leituras imprecisas. 
 
-No primeiro circuito, o contador possuía uma entrada sclr (Synchronous Clear), este comando permitia zerar todos os bits do contador, porém, para corrigir tal problema alterou-se esta entrada para um sset (Synchronous set), este comando irá inserir um valor preestabelecido, no caso, será inserido o valor 1.
+O ideal nesta situação seria se centro da curva de distribuição de probabilidade estivesse centrada em 0, tornando a variação mais provável a de 0 clocks, garantindo a integridade da leitura.
 
-Desta forma iremos inserir um erro de +1 clock na leitura, uma vez que o primeiro clock não será contado, e sim inserido, porém, isso faz com que a distribuição de probabilidade atinja o comportamento ideal, ou seja, somando 1 ao erro aleatório o centro da curva ficará em 0, representado pela Figura \ref{fig:distribuicao-de-probabilidade-do-erro1}.
+No primeiro circuito, o contador possuía uma entrada sclr (Synchronous Clear), este comando permite zerar todos os bits do contador; porém, para corrigir tal problema alterou-se esta entrada para um sset (Synchronous set). Este comando insere um valor preestabelecido, no caso, 1.
+
+Desta forma garante-se a inserção de um erro de +1 clock na leitura, uma vez que o primeiro clock não será contado, e sim inserido. Isso faz com que a distribuição de probabilidade atinja o comportamento ideal, ou seja, somando 1 ao erro aleatório o centro da curva ficará em 0, representado pela Figura \ref{fig:distribuicao-de-probabilidade-do-erro1}.
 
 \begin{figure}[!htp]
 	\centering
@@ -325,13 +315,13 @@ Desta forma iremos inserir um erro de +1 clock na leitura, uma vez que o primeir
 	\label{fig:distribuicao-de-probabilidade-do-erro1}
 \end{figure}
 
-Note que esta solução não corrige todo o problema apenas diminui a probabilidade de erros, o ideal seria que não houvessem erros na leitura. Para que seja possível garantir que o sinal lido é confiável foi criado um outro circuito que visa promover isto, tal circuito será apresentado mas a frente.
+Note que esta solução não previne que hajam erros; apenas diminui a probabilidade de que ocorram. Para que seja possível garantir que o sinal lido é confiável, foi criado um outro circuito que visa promover isto, o qual será apresentado e descrito mais a frente.
 
 \section{Gerador}
 
-O circuito atual é capaz de medir o período de um sinal de entrada, porém, tudo será perdido se o sinal for retirado, o próximo passo então é criar um circuito capaz de gerar um sinal em sincronismo com o sinal de referência recebido. 
+Até este estágio o circuito era  capaz de aferir o período de um sinal de entrada. Contudo, o exforço será perdido se a ponta de prova for desconectada do condutor fornecendo o sinal. Pretendia-se então, criar um circuito capaz de gerar um sinal em sincronia com o sinal de referência recebido. 
 
-Primeiramente foi construído um diagrama de estado para uma UC (Unidade de Controle) capaz de gerenciar os componentes do circuito com o objetivo de fazer a cópia do sinal recebido, representada pela Figura \ref{fig:diagrama-de-estado1}.
+Primeiramente construiu-se um diagrama de estados para uma UC (Unidade de Controle) capaz de gerenciar os componentes do circuito com o objetivo de fazer a cópia do sinal recebido, representada pela Figura \ref{fig:diagrama-de-estado1}.
 
 \begin{figure}[!htp]
 	\centering
@@ -340,17 +330,17 @@ Primeiramente foi construído um diagrama de estado para uma UC (Unidade de Cont
 	\label{fig:diagrama-de-estado1}
 \end{figure}
 
-Ao conectar um sinal de entrada ao circuito, este começará no estado 1 e então irá para o estado 2 quando PP (sinal de entrada) estiver em 1. Para passar para o estado 3 é necessário que PP esteja em 0. Note que este processo é feito para ignorar o primeiro período já que ele pode não ser um sinal muito confiável, devido ao fato de não sabermos se o sinal lido inicialmente está exatamente no inicio de um período da fase.
+Ao conectar um sinal de entrada ao circuito, este estará no estado 1 do diagrama, e então irá para o estado 2 quando PP (sinal de entrada) estiver em 1. Para passar para o estado 3 é necessário que PP esteja em 0. Este processo tem como objetivo descartar o primeiro período, pois há possibilidade de este estar fragmentado, gerando leituras errôneas e inúteis.
 
-Chegando ao estado 4, o sinal Cl ficará em nível alto, limpado assim o contador, em seguida passa-se para o estado 5, em que, junto com o estado 6 irão esperar passar outro período, chegando finalmente no estado 7, em que são gerados sinais Cl e Ld. Garantida esta primeira medição correta do período, a máquina evolui sucessiva e repetidamente pelos estados 8, 9 e de volta para o 7, onde são providos os sinais Cl e Ld, permitindo a realização de novas e corretas medições, até que o sinal de entrada for retirado e o sinal Comp esteja em 1.
+Chegando ao estado 4, o sinal Cl permanecerá em nível alto, limpado assim o contador. Em seguida passa-se para o estado 5 que, junto com o estado 6, esperarão que outro período se transcorra, atingindo finalmente o estado 7, em que são gerados sinais Cl e Ld. Garantida a primeira aferição do período, a máquina evolui sucessiva e repetidamente pelos estados 8, 9 e de volta para o 7, nos quais são providos os sinais Cl e Ld, permitindo a realização de novas e corretas medições, sobrescrevendo umas às outras, até que o sinal de entrada seja retirado e o sinal Comp esteja em 1.
 
-O sinal Comp irá ficar em 1 sempre que o contador atingir o valor lido nos estado 4, 5 e 6, ou seja, quando completar um período da fase de entrada.
+O sinal Comp permanecerá em 1 sempre que o contador atingir o valor lido nos estado 4, 5 e 6, ou seja, quando completar um período da fase de entrada.
 
-Indo para o estado 10, onde é gerado um sinal Cl para manter o sincronismo com a fase lida e então passa para o estado 1. A partir deste ponto o a maquina fica repetidamente indo do estado 1 para o 10, esta transição irá ocorrer sempre que o sinal de entrada estiver em 0 e o Comp estiver em alto, ou seja, sempre ao fim de um período.
+Indo para o estado 10, no qual é gerado um sinal Cl para manter o sincronismo com a fase lida e então passa para o estado 1. A partir deste ponto o a maquina fica repetidamente indo do estado 1 para o 10, esta transição irá ocorrer sempre que o sinal de entrada estiver em 0 e o Comp estiver em alto, ou seja, sempre ao fim de um período.
 
-A partir deste diagrama de estado podemos construir o circuito da Figura \ref{fig:gerador}. Note que parte do circuito foi reaproveitado, o contador e o registrador. O comparador abaixo (inst 11) faz a comparação entre o sinal corrente e o valor de frequência armazenado, gerando assim o sinal Comp que é utilizado pela UC. Tal sinal, possui um ciclo ativo muito pequeno, que impede a visualização deste em um osciloscópio, a fim de gerar um sinal capaz de ser visualizado foi inserido o comparador na parte superior (inst 10), que irá comparar a contagem em curso com a metade da contagem registrada que será obtido do registrador de deslocamento ao lado (inst 5), fazendo com que o sinal "copia" de saída possua ciclo ativo de 50\% síncrono com o sinal de entrada.
+A partir deste diagrama de estado pode-se construir o circuito da Figura \ref{fig:gerador}. Note que reaproveitou-se parte do circuito: o contador e o registrador. O comparador abaixo (inst 11) faz a comparação entre o sinal corrente e o valor de frequência armazenado, gerando assim o sinal Comp que é utilizado pela UC. Tal sinal, possui um ciclo ativo muito pequeno, que impede a visualização deste em um osciloscópio, a fim de gerar um sinal capaz de ser visualizado foi inserido o comparador na parte superior (inst 10), que irá comparar a contagem em curso com a metade da contagem registrada que será obtido do registrador de deslocamento ao lado (inst 5), fazendo com que o sinal "copia" de saída possua ciclo ativo de 50\% síncrono com o sinal de entrada.
 
-Outra mudança necessário foi a troca do registrador (inst9) para um que começasse com o valor máximo possível, ou seja, todos os bits em 1. Isto se deve pois, como o lpm\_counter1 (inst 8) começa sempre em 1, e se o comparador começar em 0, o sinal Comp não será ativado corretamente.
+Outra mudança necessária foi a troca do registrador (inst9) para um que começasse com o valor máximo possível (isto é, todos os bits em 1). Isto se deve pois, como o lpm\_counter1 (inst 8) começa sempre em 1, e se o comparador começar em 0, o sinal Comp não seria ativado corretamente.
 
 \begin{figure}[!htp]
 	\centering
@@ -361,13 +351,13 @@ Outra mudança necessário foi a troca do registrador (inst9) para um que começ
 
 \section{Comparador de Fase}
 
-Após inserir um sinal de entrada, o circuito é capaz de gerar uma cópia desta fase, porém, é impossível descobrir qual fase foi inserida (R, S ou T), para isso, foi implementado três botões (Rin, Sin e Tin) que devem ser pressionados para indicar qual fase foi inserida inicialmente.
+Após inserir um sinal de entrada, o circuito é capaz de gerar uma cópia desta fase, porém, é impossível descobrir qual fase foi inserida (R, S ou T). Implementou-se três botões - Rin, Sin e Tin - que devem ser pressionados pelo usuário para indicar qual fase foi aferida inicialmente.
 
-Ao pressionar um dos botões de entrada, a saída LedOutput deve ser equivalente ao botão pressionado, isso acontece até que se tire o dedo do botão. Assim quando chegar um novo sinal de Clear, não existirá mais sinal desses botão, contudo a saída deve continuar a mesma, isto porque a lógica do componente saidaLed é realimentada com os valores de Rout, Sout e Tout. Apenas terá alteração na saída ao colocar um novo sinal na ponta de prova.
+Ao pressionar um dos botões de entrada, a saída LedOutput deve ser equivalente ao botão pressionado, isso acontece até que se tire o dedo do botão. Assim quando chegar um novo sinal de Clear, não existirá mais sinal desses botão; a saída, contudo, deve permanecer a mesma. Isso porque a lógica do componente saidaLed é realimentada com os valores de Rout, Sout e Tout. Apenas ocorrerá alteração na saída ao colocar um novo sinal na ponta de prova.
 
 \subsection{Máquina sequencial CompFase}
 
-Neste ponto, a máquina está pronta para executar a leitura de uma nova fase para fazer a comparação. A máquina sequencial da Figura \ref{fig:comp-fase} sinaliza se o novo sinal de entrada está igual a fase de referencia, se é a fase anterior (na sequencia RST) ou a fase posterior, para isto utiliza a seguinte lógica:
+Neste ponto, a máquina está pronta para executar a leitura de uma nova fase para fazer a comparação. A máquina sequencial da Figura \ref{fig:comp-fase} sinaliza se o novo sinal de entrada está em sincronia em relação à fase de referencia, se é a fase anterior (na sequencia RST) ou a fase posterior, para isto utiliza a seguinte lógica:
 \begin{itemize}
 	\item estados começando em 00, indicam que a fase inserida é igual a fase de referencia;
 	\item estados começando em 01, indicam que a fase inserida é a posterior à fase de referencia;
@@ -393,7 +383,7 @@ A partir da máquina sequencial apresentada, pode-se construir o circuito da Fig
 	\includegraphics[width=16cm]{images/circuito-compfase}	\label{fig:circuito-compfase}
 \end{figure}
 
-Para utilizar o método de comparação de fases requer uma frequência de seis vezes a frequência da fase de referência. Assim, o contador Ipm\_counter3 (inst) gera esta frequência dividindo o clock por seis, sendo então utilizado para realizar uma contagem entre as bordas de subida da fase de referência pelo contador Ipm\_counter5 (inst2), resultando em uma contagem truncada em $\frac{1}{6}$ do período da fase de referência, sendo armazenada em um registrador Ipm\_dff1 (inst3) pelo pulso Ld.
+Utilizar o método de comparação de fases requer uma frequência de seis vezes a frequência da fase de referência. Assim, o contador Ipm\_counter3 (inst) gera esta frequência dividindo o clock por seis, sendo então utilizado para realizar uma contagem entre as bordas de subida da fase de referência pelo contador Ipm\_counter5 (inst2), resultando em uma contagem truncada em $\frac{1}{6}$ do período da fase de referência, sendo armazenada em um registrador Ipm\_dff1 (inst3) pelo pulso Ld.
 
 Como o contador Ipm\_counter5 (inst2) recebe um clock com $\frac{1}{6}$ da
 frequência original do circuito, é utilizado um Clear assíncrono que ocorre na borda de descida anterior ao pulso Cl, com metade de sua duração, proveniente da porta "E" AND2 (inst10) entre o pulso Cl e o flip-flop tipo D DFF (inst9), que também realiza o Clear na máquina comparadora de fases.
@@ -403,13 +393,13 @@ máquina comparadora de fases, e realiza também o Clear do contador Ipm\_counte
 
 \section{Timeout}
 
-Na seção 3.3, em que corrigimos o problema de erro aleatório na leitura da fase de referência, foi dito que aquilo era o suficiente para acabar com os erros de leitura, uma vez que, os erros variam de acordo com uma distribuição de probabilidade continua com centro em 0, isto é, pode variar de -1 a +1 clock de erro.
+Na seção 3.3, na qual o problema de erro aleatório na leitura da fase de referência corrigiu-se o problema do erro aleatório, foi dito que aquilo era o suficiente para acabar com os erros de leitura, uma vez que, os erros variam de acordo com uma distribuição de probabilidade continua com centro em 0, isto é, pode variar de -1 a +1 clock de erro.
 
-Este valor pode parecer pequeno, mas este erro se repete a cada novo período enquanto se espera a conexão da nova fase de referência à ponta de prova. O sinal gerado internamente se defasa em relação a fase de referência para mais ou para menos.
+Este valor pode parecer pequeno, mas este erro se repete a cada novo período enquanto se espera a conexão da nova fase de referência à ponta de prova. O sinal gerado internamente se defasa em relação à fase de referência para mais ou para menos.
 
-Se o acumulo deste erro se torna muito grande então a comparação pode não ser tão precisa, pois, no caso em que a fase R é inserida como fase de referencia, após a cópia se defasar em $\frac{1}{6}$ para menos em relação a fase de referencia e inserindo novamente uma fase R para fazer a comparação, tal situação se confunde com o caso em que é inserido a fase S para fazer a comparação e a cópia se defasou em $\frac{1}{6}$ para mais.
+Se o acumulo deste erro se tornar suficientemente grande, a comparação perde sua validade. Se a fase R for inserdia como referência, por exemplo, após a cópia se defasar em $\frac{1}{6}$ para menos em relação a fase de referencia e inserindo novamente uma fase R para fazer a comparação, tal situação se confunde com o caso em que é inserido a fase S para fazer a comparação e a cópia se defasou em $\frac{1}{6}$ para mais.
 
-Para corrigir isto criou-se o circuito Timeout, que nada mais é do que um "temporizador". Este circuito ira executar uma contagem decrescente, até que a fase de referencia esteja defasada (situação limite é quando esta atinge $\frac{1}{6}$ de erro). Ao atingir o valor 0, a máquina será travada, indicando que o sinal copiado não é mais confiável, necessitando de uma nova leitura para a fase de referencia.
+Para corrigir isto criou-se o circuito Timeout, que nada mais é do que um temporizador. Este circuito ira executar uma contagem decrescente, até que a fase de referencia esteja defasada (situação limite é quando esta atinge $\frac{1}{6}$ de erro). Ao atingir o valor 0, a máquina será travada, indicando que o sinal copiado não é mais confiável, necessitando de uma nova leitura para a fase de referencia.
 
 O tempo deste Timeout pode ser estimado, sendo sua fórmula do tipo: $$Timeout = \frac{Clock}{\left(\left. 6 \right. . \left. \left(frequencia\right)^2\right.\right)}$$
 
@@ -417,8 +407,9 @@ Sendo o clock da placa igual a $25175$MHz e a frequência da rede entre $60$Hz a
 
 \subsection{Circuito contador}
 
-Para fazer a contagem, construiu o circuito da Figura \ref{fig:timeout}.
-O contador lpm\_counter5 (inst8) irá dividir o clock de $25175$MHz por dois, gerando um sinal de $2$Hz que será divido novamente por 2 pelo flip-flop tipo T gerando um sinal de $1$Hz. Tal sinal é então dividido pelo contador de módulo 60 (inst3) produzindo um pulso a cada minuto. Os contadores à direita irão receber estes sinal, sendo que os dois superiores executam a contagem em segundos e os inferiores a contagem em minutos, o cout dos contadores de unidades servem para acionar os contadores de dezenas.
+Para fazer a contagem, construiu-se o circuito da Figura \ref{fig:timeout}.
+
+O contador lpm\_counter5 (inst8) dividirá o clock de $25175$MHz por dois, gerando um sinal de $2$Hz que será divido novamente por 2 pelo flip-flop tipo T gerando um sinal de $1$Hz. Tal sinal é então dividido pelo contador de módulo 60 (inst3) produzindo um pulso a cada minuto. Os contadores à direita irão receber estes sinal, sendo que os dois superiores executam a contagem em segundos e os inferiores a contagem em minutos, o cout dos contadores de unidades servem para acionar os contadores de dezenas.
 
 O valor inicial calculado acima é inserido através dos pinos aset (Asynchronous Set) dos contadores.
 
@@ -559,5 +550,8 @@ Este circuito foi testado na placa, porém não apresentou resultados positivos.
 Os demais componentes não foram possíveis de serem testados, devido a dúvidas de implementação, testes sem sucesso e falta de tempo.
 
 \chapter{Conclusão}
+
+
+
 
 \end{document}
